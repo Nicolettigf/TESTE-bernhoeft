@@ -3,6 +3,8 @@ using DataAccess;
 using DataAcess;
 using Microsoft.EntityFrameworkCore;
 using Shared;
+using FluentValidation;
+using Entities.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +24,14 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
+// Registrando Services e Repositórios
 builder.Services.AddScoped<IAvisoService, AvisoService>();
 builder.Services.AddScoped<IAvisoRepository, AvisoRepository>();
+
+// Registrando validadores do FluentValidation
+builder.Services.AddScoped<CreateAvisoValidator>();
+builder.Services.AddScoped<UpdateAvisoValidator>();
+builder.Services.AddScoped<GetAvisoValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

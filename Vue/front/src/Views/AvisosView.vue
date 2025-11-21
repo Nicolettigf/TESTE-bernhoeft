@@ -6,9 +6,12 @@
 
     <div style="display: flex; flex-direction: column; gap: 10px; max-width: 400px;">
       
+      <!-- TÍTULO: só editável no CREATE -->
       <input 
-        v-model="form.titulo" 
-        placeholder="Título" 
+        :value="form.titulo"
+        @input="!editando ? form.titulo = $event.target.value : null"
+        placeholder="Título"
+        :disabled="editando"
       />
 
       <textarea 
@@ -42,35 +45,56 @@ const form = ref({
 })
 
 onMounted(async () => {
-  const id = route.params.id
+  const id = Number(route.params.id)
 
-  // Se tiver ID → edição
+  if (id && id <= 0) {
+    alert("ID inválido!")
+    return router.push("/")
+  }
+
   if (id) {
     editando.value = true
 
-    const resp = await AvisoService.getById(id)
+    try {
+      const resp = await AvisoService.getById(id)
 
-    form.value = {
-      id: resp.data.id,
-      titulo: resp.data.titulo,
-      mensagem: resp.data.mensagem
+      form.value.id = resp.data.id
+      form.value.titulo = resp.data.titulo    // visível, porém travado
+      form.value.mensagem = resp.data.mensagem
+
+    } catch {
+      alert("Aviso não encontrado!")
+      return router.push("/")
     }
   }
 })
 
 async function salvarAviso() {
-  if (!form.value.titulo) return alert("Preencha o título")
+  // REGRAS DO DESAFIO
 
-  if (editando.value) {
-    // UPDATE
-    await AvisoService.update(form.value.id, form.value)
-    alert("Aviso atualizado!")
-  } else {
-    // CREATE
-    await AvisoService.create(form.value)
+  if (!form.value.mensagem || form.value.mensagem.trim() === "")
+    return alert("A mensagem é obrigatória!")
+
+  if (!editando.value) {
+    if (!form.value.titulo || form.value.titulo.trim() === "")
+      return alert("O título é obrigatório!")
+
+    await AvisoService.create({
+      titulo: form.value.titulo,
+      mensagem: form.value.mensagem
+    })
+
     alert("Aviso criado!")
+  } 
+  else {
+    // UPDATE = só mensagem
+    await AvisoService.update(form.value.id, {
+      mensagem: form.value.mensagem
+    })
+
+    alert("Aviso atualizado!")
   }
 
-  router.push("/") // volta ao dashboard
+  router.push("/")
 }
 </script>

@@ -27,13 +27,7 @@ public class AvisoController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] AvisoDto dto)
     {
-        var aviso = new Aviso
-        {
-            Titulo = dto.Titulo,
-            Mensagem = dto.Mensagem,
-        };
-
-        var criado = await _service.CreateAsync(aviso);
+        var criado = await _service.CreateAsync(dto);
         return CreatedAtAction(nameof(Get), new { id = criado.Id }, criado);
     }
 
@@ -41,7 +35,8 @@ public class AvisoController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] AvisoDto dto)
     {
-        var atualizado = await _service.UpdateMensagemAsync(id, dto.Mensagem);
+        dto.Id = id;
+        var atualizado = await _service.UpdateMensagemAsync(dto);
         return Ok(atualizado);
     }
 

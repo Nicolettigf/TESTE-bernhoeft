@@ -1,0 +1,52 @@
+name: CI - .NET Solution + Vue
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+
+jobs:
+
+  backend:
+    name: Build & Test - .NET Solution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore Solution
+        run: dotnet restore TESTE.sln
+
+      - name: Build Solution
+        run: dotnet build TESTE.sln --no-restore --configuration Release
+
+      - name: Run Tests
+        run: dotnet test UnitTests/UnitTests.csproj --no-build --verbosity normal
+
+
+  frontend:
+    name: Build Frontend (Vue 3)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: ./front
+        run: npm install
+
+      - name: Build
+        working-directory: ./front
+        run: npm run build
