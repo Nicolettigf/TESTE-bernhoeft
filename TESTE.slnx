@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="API/API.csproj" Id="702b815d-f98e-41d3-aab5-43ddca176408" />
+  <Project Path="Bussines/Bussines.csproj" />
+  <Project Path="DataAcess/DataAcess.csproj" />
+  <Project Path="Entities/Entities.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+  <Project Path="UnitTests/UnitTests.csproj" />
+</Solution>
