@@ -72,7 +72,7 @@ namespace Bussines
         // -------------------------------------------
         // UPDATE (somente mensagem)
         // -------------------------------------------
-        public async Task<Aviso> UpdateMensagemAsync(AvisoDto dto)
+        public async Task<Aviso> UpdateMensagemAsync(UpdateAvisoDto dto)
         {
             await _updateValidator.ValidateAndThrowAsync(dto);
 
@@ -82,6 +82,7 @@ namespace Bussines
             if (aviso == null)
                 throw new KeyNotFoundException("Aviso não encontrado.");
 
+            aviso.Mensagem = dto.Mensagem;
             aviso.EditadoEm = DateTime.UtcNow;
 
             await _repo.UpdateAsync(aviso);

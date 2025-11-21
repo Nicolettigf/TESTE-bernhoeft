@@ -30,7 +30,7 @@ namespace Bussines
     }
 
     // Validador para atualizar mensagem de um aviso
-    public class UpdateAvisoValidator : AbstractValidator<AvisoDto>
+    public class UpdateAvisoValidator : AbstractValidator<UpdateAvisoDto>
     {
         public UpdateAvisoValidator()
         {

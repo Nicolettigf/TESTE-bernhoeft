@@ -89,6 +89,7 @@ async function salvarAviso() {
   else {
     // UPDATE = só mensagem
     await AvisoService.update(form.value.id, {
+      id: form.value.id,
       mensagem: form.value.mensagem
     })
 

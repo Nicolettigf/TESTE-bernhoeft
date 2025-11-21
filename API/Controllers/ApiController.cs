@@ -33,9 +33,8 @@ public class AvisoController : ControllerBase
 
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] AvisoDto dto)
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateAvisoDto dto)
     {
-        dto.Id = id;
         var atualizado = await _service.UpdateMensagemAsync(dto);
         return Ok(atualizado);
     }

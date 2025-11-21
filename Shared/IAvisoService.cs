@@ -10,7 +10,7 @@ namespace Shared
 
         Task<Aviso> CreateAsync(AvisoDto dto);
 
-        Task<Aviso> UpdateMensagemAsync(AvisoDto dto);
+        Task<Aviso> UpdateMensagemAsync(UpdateAvisoDto dto);
 
         Task<bool> DeleteAsync(int id);
     }
