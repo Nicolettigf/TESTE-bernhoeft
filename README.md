@@ -1,59 +1,59 @@
 ﻿🧰 Tecnologias Utilizadas
 
-🖥 Backend (.NET 10 / C#)
+	Backend (.NET 10 / C#)
 
-ASP.NET Core 10 (API REST)
+	ASP.NET Core 10 (API REST)
 
-Entity Framework Core
+	Entity Framework Core
 
-SQLite como banco local (padrão do projeto)
+	SQLite como banco local (padrão do projeto)
 
-FluentValidation para validação dos DTOs
+	FluentValidation para validação dos DTOs
 
-Injeção de dependência nativa do .NET
+	Injeção de dependência nativa do .NET
 
-Repository Pattern aplicado
+	Repository Pattern aplicado
 
-Service Layer contendo toda a regra de negócio
+	Service Layer contendo toda a regra de negócio
 
-Soft Delete na entidade Aviso
+	Soft Delete na entidade Aviso
 
-DTOs específicos para Create / Update / Get
+	DTOs específicos para Create / Update / Get
 
-Queryable exposto no repositório para consultas flexíveis
+	Queryable exposto no repositório para consultas flexíveis
 
-Redis cache:
-O uso de Redis chegou a ser implementado e permanece comentado no código, não por necessidade técnica, 
-mas como estudo e demonstração de conhecimento, já que ele não fazia sentido real dentro do escopo deste projeto.
+	Redis cache:
+	O uso de Redis chegou a ser implementado e permanece comentado no código, não por necessidade técnica, 
+	mas como estudo e demonstração de conhecimento, já que ele não fazia sentido real dentro do escopo deste projeto.
 
 
 🎨 Frontend (Vue 3 / Vite)
 
-Vue 3 + Composition API
+	Vue 3 + Composition API
 
-Vite como bundler
+	Vite como bundler
 
-Vue Router (Home + AvisoView)
+	Vue Router (Home + AvisoView)
 
-Axios para integração com a API
+	Axios para integração com a API
 
-Componentização simples e direta
+	Componentização simples e direta
 
-Regras do desafio aplicadas no formulário:
+	Regras do desafio aplicadas no formulário:
 
-Título habilitado somente no CREATE
+	Título habilitado somente no CREATE
 
-Título bloqueado no UPDATE (Mensagem obrigatória nos dois fluxos)
+	Título bloqueado no UPDATE (Mensagem obrigatória nos dois fluxos)
 
-Telas implementadas:
+	Telas implementadas:
 
-Listagem de avisos ativos
+	Listagem de avisos ativos
 
-Criação de aviso
+	Criação de aviso
 
-Edição (somente mensagem)
+	Edição (somente mensagem)
 
-Remoção (soft delete)
+	Remoção (soft delete)
 
 🏗 Arquitetura / Organização do Projeto
 
